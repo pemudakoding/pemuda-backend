@@ -71,7 +71,7 @@ class TransactionController extends Controller
     {
         $item = Transaction::findOrFail($id);
 
-        return view('pages.transaction.edit',['item' => $item]);
+        return view('pages.transaction.edit', ['item' => $item]);
     }
 
     /**
@@ -86,9 +86,24 @@ class TransactionController extends Controller
         $data = $request->all();
 
         $item = Transaction::findOrFail($id);
-        $item->update($data);
 
-        return redirect()->route('transactions.index');
+        if ($item->update($data)) {
+            return redirect()->route('transactions.index')->with(
+                'alert',
+                [
+                    'type' => "success",
+                    "message" => "Transaksi {$item->name} berhasil di perbarui"
+                ]
+            );
+        } else {
+            return redirect()->route('transactions.index')->with(
+                'alert',
+                [
+                    'type' => "error",
+                    "message" => "Transaksi {$item->name} gagal di perbarui"
+                ]
+            );
+        }
     }
 
     /**
@@ -100,12 +115,27 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         $item = Transaction::findOrFail($id);
-        $item->delete();
 
-        return redirect()->route('transactions.index');
+        if ($item->delete()) {
+            return redirect()->route('transactions.index')->with(
+                'alert',
+                [
+                    'type' => "success",
+                    "message" => "Transaksi {$item->name} berhasil di hapus"
+                ]
+            );
+        } else {
+            return redirect()->route('transactions.index')->with(
+                'alert',
+                [
+                    'type' => "error",
+                    "message" => "Transaksi {$item->name} gagal di hapus"
+                ]
+            );
+        }
     }
 
-    public function setStatus(Request $request,$id)
+    public function setStatus(Request $request, $id)
     {
         $request->validate([
             'status' => 'required|in:PENDING,SUCCESS,FAILED'
@@ -114,8 +144,22 @@ class TransactionController extends Controller
         $item = Transaction::findOrFail($id);
         $item->transaction_status = $request->status;
 
-        $item->save();
-
-        return redirect()->route('transactions.index');
+        if ($item->save()) {
+            return redirect()->route('transactions.index')->with(
+                'alert',
+                [
+                    'type' => "success",
+                    "message" => "Transaksi {$item->name} berhasil di ubah ke <b>{$request->status}</b>"
+                ]
+            );
+        } else {
+            return redirect()->route('transactions.index')->with(
+                'alert',
+                [
+                    'type' => "error",
+                    "message" => "Transaksi {$item->name} gagal di ubah ke <b>{$request->status}</b>"
+                ]
+            );
+        }
     }
 }

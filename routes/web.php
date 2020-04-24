@@ -18,12 +18,28 @@ Route::get('/', 'DashboardController@index')
 
 Auth::routes(['register' => false]);
 
+/*
+    Product Route
+*/
 Route::get('products/{id}/gallery', 'ProductController@gallery')
 	->name('products.gallery');
 Route::resource('products','ProductController');
 
+/*  
+    Product Galleries Route
+*/
 Route::resource('product-galleries','ProductGalleryController');
 
+/*
+    Transaction Route
+*/
 Route::get('transactions/{id}/set-status', 'TransactionController@setStatus')
 	->name('transactions.status');
 Route::resource('transactions','TransactionController');
+
+
+/*
+    Web Route
+*/
+
+route::resource('app','AppController');

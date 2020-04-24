@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 
 class ProductGalleryController extends Controller
 {
-    
-     /**
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -43,7 +43,7 @@ class ProductGalleryController extends Controller
     {
         $products = Product::all();
 
-        return view('pages.product-galleries.create',['products' => $products]);
+        return view('pages.product-galleries.create', ['products' => $products]);
     }
 
     /**
@@ -55,11 +55,25 @@ class ProductGalleryController extends Controller
     public function store(ProductGalleryRequest $request)
     {
         $data = $request->all();
-        $data['photo'] = $request->file('photo')->store('assets/product','public');
+        $data['photo'] = $request->file('photo')->store('assets/product', 'public');
 
-        ProductGallery::create($data);
-
-        return redirect()->route('product-galleries.index');
+        if (ProductGallery::create($data)) {
+            return redirect()->route('product-galleries.index')->with(
+                'alert',
+                [
+                    'type' => "success",
+                    "message" => "Foto Produk berhasil di tambahkan"
+                ]
+            );
+        } else {
+            return redirect()->route('product-galleries.index')->with(
+                'alert',
+                [
+                    'type' => "error",
+                    "message" => "Foto Produk gagal di tambahkan"
+                ]
+            );
+        }
     }
 
     /**
@@ -105,8 +119,23 @@ class ProductGalleryController extends Controller
     public function destroy($id)
     {
         $item = ProductGallery::findOrFail($id);
-        $item->delete();
 
-        return redirect()->route('product-galleries.index');
+        if ($item->delete()) {
+            return redirect()->route('product-galleries.index')->with(
+                'alert',
+                [
+                    'type' => "success",
+                    "message" => "Foto Produk {$item->name} berhasil di hapus"
+                ]
+            );
+        } else {
+            return redirect()->route('product-galleries.index')->with(
+                'alert',
+                [
+                    'type' => "error",
+                    "message" => "Foto Produk {$item->name} gagal di hapusB"
+                ]
+            );
+        }
     }
 }

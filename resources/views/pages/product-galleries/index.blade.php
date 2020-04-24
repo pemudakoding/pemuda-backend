@@ -1,12 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
+    @include('includes.alert')
 	<div class="orders">
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-					<div class="card-body">
-						<h4 class="box-title">Daftar Foto Barang</h4>
+					<div class="card-body d-flex justify-content-between">
+						<h4 class="box-title">Daftar Foto Produk</h4>
+						<a href="{{ route('product-galleries.create') }}" class="btn btn-outline-primary btn-sm">Tambah Foto</a>
 					</div>
 					<div class="card-body--">
 						<div class="table-stats order-table ov-h">

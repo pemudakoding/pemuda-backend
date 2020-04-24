@@ -2,6 +2,7 @@
 
 
 @section('content')
+    @include('includes.alert')
 	<div class="orders">
 		<div class="row">
 			<div class="col-12">
@@ -45,16 +46,16 @@
 										<td>
 
 											@if($item->transaction_status == "PENDING")
-												<a 	href="{{ route('transactions.status',$item->id) }}?status=SUCCESS" 
+												<a 	href="{{ route('transactions.status',$item->id) }}?status=SUCCESS"
 													class="btn btn-success btn-sm">
 													<i class="fa fa-check"></i>
 												</a>
-												<a 	href="{{ route('transactions.status',$item->id) }}?status=FAILED" 
+												<a 	href="{{ route('transactions.status',$item->id) }}?status=FAILED"
 													class="btn btn-warning btn-sm">
 													<i class="fa fa-times"></i>
 												</a>
 											@endif
-											<a 	href="#transactionModal" 
+											<a 	href="#transactionModal"
 												class="btn btn-info btn-sm"
 												data-remote='{{ route('transactions.show',['transaction' => $item->id]) }}'
 												data-toggle='modal'
@@ -97,8 +98,8 @@
 		jQuery(document).ready(function($){
 			$('#transactionModal').on('show.bs.modal', function(e){
 				let button = e.relatedTarget;
-				let modal  = $(this)				
-				
+				let modal  = $(this)
+
 				modal.find('.modal-body').load(button.dataset.remote);
 				modal.find('.modal-title').html(button.dataset.title);
 			});

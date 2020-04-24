@@ -21,7 +21,7 @@ class ProductController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function index()
     {
         $items = Product::all();
-        return view('pages.products.index',['items' => $items]);
+        return view('pages.products.index', ['items' => $items]);
     }
 
     /**
@@ -54,9 +54,23 @@ class ProductController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
 
-        Product::create($data);
-
-        return redirect()->route('products.index');
+        if (Product::create($data)) {
+            return redirect()->route('products.index')->with(
+                'alert',
+                [
+                    'type' => "success",
+                    "message" => "Produk {$request->name} berhasil di tambahkan"
+                ]
+            );
+        } else {
+            return redirect()->route('products.index')->with(
+                'alert',
+                [
+                    'type' => "error",
+                    "message" => "Produk {$request->name} gagal di tambahkan"
+                ]
+            );
+        }
     }
 
     /**
@@ -79,7 +93,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $item = Product::findOrFail($id);
-        return view('pages.products.edit',['item' => $item]);
+        return view('pages.products.edit', ['item' => $item]);
     }
 
     /**
@@ -95,9 +109,25 @@ class ProductController extends Controller
         $data['slug'] = Str::slug($request->name);
 
         $item = Product::findOrFail($id);
-        $item->update($data);
 
-        return redirect()->route('products.index');
+
+        if ($item->update($data)) {
+            return redirect()->route('products.index')->with(
+                'alert',
+                [
+                    'type' => "success",
+                    "message" => "Produk {$request->name} berhasil di perbarui"
+                ]
+            );
+        } else {
+            return redirect()->route('products.index')->with(
+                'alert',
+                [
+                    'type' => "error",
+                    "message" => "Produk {$request->name} gagal di perbarui"
+                ]
+            );
+        }
     }
 
     /**
@@ -109,9 +139,25 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $item = Product::findOrFail($id);
-        $item->delete();
+        ProductGallery::where('products_id', $id)->delete();
 
-        ProductGallery::where('products_id',$id)->delete();
+        if ($item->delete()) {
+            return redirect()->route('products.index')->with(
+                'alert',
+                [
+                    'type' => "success",
+                    "message" => "Produk {$item->name} berhasil di hapus"
+                ]
+            );
+        } else {
+            return redirect()->route('products.index')->with(
+                'alert',
+                [
+                    'type' => "error",
+                    "message" => "Produk {$item->name} gagal di hapus"
+                ]
+            );
+        }
 
         return redirect()->route('products.index');
     }
@@ -120,7 +166,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $items   = ProductGallery::with('product')
-            ->where('products_id',$id)->get();
+            ->where('products_id', $id)->get();
 
         return view('pages.products.gallery', [
             'product' => $product,
