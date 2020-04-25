@@ -10,4 +10,9 @@ class App extends Model
         'app_name', 'logo', 'email', 'number',
         'address', 'facebook', 'instagram', 'twitter'
     ];
+
+    public function getLogoAttribute($value)
+    {
+        return url('storage/' . $value);
+    }
 }

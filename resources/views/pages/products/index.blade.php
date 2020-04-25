@@ -16,11 +16,11 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>Name</th>
-										<th>Type</th>
-										<th>Price</th>
-										<th>Quantity</th>
-										<th>Action</th>
+										<th>Nama</th>
+										<th>Tipe</th>
+										<th>Harga</th>
+										<th>Jumlah</th>
+										<th>Aksi</th>
 									</tr>
 								</thead>
 								<tbody>

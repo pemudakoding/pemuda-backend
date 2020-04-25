@@ -25,11 +25,10 @@
                 <div class="form-group">
                     <label for="logo" class="form-control-label">Logo Aplikasi</label>
                     <input  type="file"
-                            accept="image/*"
                             name="logo"
-                            value="{{ old('logo') }}"
-                            class="form-control @error('logo') is-invalid @enderror" />
-                    @error('logo') <div class="text-muted">{{ $message }}</div> @enderror
+                            value="{{ old('logo_app') }}"
+                            class="form-control @error('logo_app') is-invalid @enderror" />
+                    @error('logo_app') <div class="text-muted">{{ $message }}</div> @enderror
                 </div>
                 <div class="form-group">
                     <label for="email" class="form-control-label">Email </label>

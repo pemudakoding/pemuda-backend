@@ -21,7 +21,7 @@
 										<th>Nomor</th>
 										<th>Total Transaksi</th>
 										<th>Status</th>
-										<th>Action</th>
+										<th>Aksi</th>
 									</tr>
 								</thead>
 								<tbody>

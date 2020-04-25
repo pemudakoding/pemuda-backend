@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'DashboardController@index')
-	->name('dashboard');
+    ->name('dashboard');
 
 Auth::routes(['register' => false]);
 
@@ -22,24 +22,29 @@ Auth::routes(['register' => false]);
     Product Route
 */
 Route::get('products/{id}/gallery', 'ProductController@gallery')
-	->name('products.gallery');
-Route::resource('products','ProductController');
+    ->name('products.gallery');
+Route::resource('products', 'ProductController');
 
-/*  
+/*
     Product Galleries Route
 */
-Route::resource('product-galleries','ProductGalleryController');
+Route::resource('product-galleries', 'ProductGalleryController');
 
 /*
     Transaction Route
 */
 Route::get('transactions/{id}/set-status', 'TransactionController@setStatus')
-	->name('transactions.status');
-Route::resource('transactions','TransactionController');
+    ->name('transactions.status');
+Route::resource('transactions', 'TransactionController');
 
 
 /*
     Web Route
 */
 
-route::resource('app','AppController');
+route::resource('app', 'AppController');
+
+/*
+    Hero App Route
+*/
+route::resource('hero-apps', 'HeroAppController');
