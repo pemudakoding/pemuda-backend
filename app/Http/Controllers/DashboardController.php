@@ -3,21 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
     	$income = Transaction::where('transaction_status','SUCCESS')->sum('transaction_total');
     	$sales  = Transaction::count();
-    	$items 	= Transaction::orderBy('id','DESC')->take(5)->get();
+        $items 	= Transaction::orderBy('id','DESC')->take(5)->get();
+
+        $totalProduct = Product::count();
+
     	$pie 	= [
     		'pending' 	=> Transaction::where('transaction_status','PENDING')->count(),
     		'failed' 	=> Transaction::where('transaction_status','FAILED')->count(),
@@ -28,7 +32,9 @@ class DashboardController extends Controller
     		'income' 	=> $income,
     		'sales'		=> $sales,
     		'items' 	=> $items,
-    		'pie' 		=> $pie,
+            'pie' 		=> $pie,
+
+            'totalProduct' => $totalProduct
     	]);
     }
 }
