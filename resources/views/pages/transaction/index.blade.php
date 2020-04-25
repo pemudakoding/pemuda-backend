@@ -1,5 +1,5 @@
 @extends('layouts.default')
-
+@section('page','Daftar Transaksi')
 
 @section('content')
     @include('includes.alert')

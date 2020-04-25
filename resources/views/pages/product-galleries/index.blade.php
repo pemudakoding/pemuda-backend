@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page','Daftar Foto Produk')
 
 @section('content')
     @include('includes.alert')

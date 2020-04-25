@@ -1,4 +1,6 @@
+
 @extends('layouts.default')
+@section('page','Informasi Aplikasi')
 
 @section('content')
     @include('includes.alert')

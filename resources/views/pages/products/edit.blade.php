@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page',"Ubah Produk {$item->name}")
 
 @section('content')
 	<div class="card">

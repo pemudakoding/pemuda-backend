@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page', "Daftar Foto Produk {$product->name}")
 
 @section('content')
 	<div class="orders">

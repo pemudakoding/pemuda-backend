@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page','Daftar Landing Page')
 
 @section('content')
     @include('includes.alert')

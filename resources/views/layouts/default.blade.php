@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }} | @yield('page') </title>
     <meta name="description" content="Online Shop">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,7 @@
 <body>
     {{-- SIDEBAR --}}
     @include('includes.sidebar')
-    
+
     <div id="right-panel" class="right-panel">
         {{-- NAVBAR --}}
         @include('includes.navbar')
@@ -31,7 +31,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    
+
 
     {{-- Scripts --}}
     @stack('before-script')

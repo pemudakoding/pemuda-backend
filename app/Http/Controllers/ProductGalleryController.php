@@ -29,7 +29,7 @@ class ProductGalleryController extends Controller
      */
     public function index()
     {
-        $items = ProductGallery::with('product')->get();
+        $items = ProductGallery::with('product')->paginate(5);
 
         return view('pages.product-galleries.index', ['items' => $items]);
     }
@@ -41,7 +41,7 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        $products = Product::paginate(5);
+        $products = Product::all();
 
         return view('pages.product-galleries.create', ['products' => $products]);
     }

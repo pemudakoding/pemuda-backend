@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page','Tambah Foto Produk')
 
 @section('content')
 	<div class="card">

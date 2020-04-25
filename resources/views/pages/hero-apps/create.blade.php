@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page','Tambah Landing Page')
 
 @section('content')
 	<div class="card">
