@@ -59,7 +59,8 @@
 							</table>
 						</div>
 					</div>
-				</div>
+                </div>
+                {{ $items->links('vendor.pagination.semantic-ui') }}
 			</div>
 		</div>
 	</div>

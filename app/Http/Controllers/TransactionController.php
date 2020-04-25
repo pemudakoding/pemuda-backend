@@ -22,7 +22,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $items = Transaction::all();
+        $items = Transaction::paginate(10);
 
         return view('pages.transaction.index', ['items' => $items]);
     }
