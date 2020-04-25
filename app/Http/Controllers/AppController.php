@@ -46,7 +46,7 @@ class AppController extends Controller
 
             $logoPath = Str::replaceFirst(asset('storage') . "/", '', $app->logo);
             Storage::disk('public')->delete($logoPath);
-            $data['logo'] = $request->logo->store('assets/logo', 'public');
+            $data['logo'] = $request->logo->storeAs('assets/logo', 'logo.jpg', 'public');
         } else {
             $data['logo'] = $app->logo;
         }
