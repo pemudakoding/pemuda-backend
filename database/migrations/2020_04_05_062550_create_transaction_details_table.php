@@ -17,6 +17,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->id();
             $table->integer('products_id');
             $table->integer('transactions_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('page','Dashboard');
 
 @section('content')
 <!-- Animated -->

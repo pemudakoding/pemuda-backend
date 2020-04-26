@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('products','API\ProductController@all');
-Route::get('transactions/{id}','API\TransactionController@get');
-Route::post('checkout','API\CheckoutController@checkout');
+Route::get('products', 'API\ProductController@all');
+Route::get('transactions/{id}', 'API\TransactionController@get');
+Route::post('checkout', 'API\CheckoutController@checkout');
+
+Route::get('app', 'API\AppController@appInformation');
+Route::get('hero-app', 'API\AppController@heroApp');
