@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    
+
     public function all(Request $request)
     {
     	$id		= $request->input('id');
@@ -50,10 +50,10 @@ class ProductController extends Controller
     		$product->where('type','like',"%$type%");
 
     	if($price_from)
-    		$product->where('price_from','>=',"%$price_from%");
+    		$product->where('price','>=',"$price_from");
 
     	if($price_to)
-    		$product->where('price_to','<=',"%$price_to%");
+    		$product->where('price','<=',"$price_to");
 
     	return ResponseFormatter::success(
     		$product->paginate($limit),
