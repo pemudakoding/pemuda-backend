@@ -37,7 +37,7 @@
 					<tr>
 						<td>{{ $detail->product->name }}</td>
 						<td>{{ $detail->product->type }}</td>
-						<td>${{ $detail->product->price }}</td>
+						<td>Rp. {{ $detail->product->price }}</td>
 					</tr>
 				@endforeach
 			</table>
