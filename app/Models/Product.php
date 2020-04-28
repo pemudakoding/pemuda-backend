@@ -20,8 +20,8 @@ class Product extends Model
         return $this->hasMany(ProductGallery::class, 'products_id');
     }
 
-    public function getPriceAttribute($value)
-    {
-        return number_format($value, 2, ',', '.');
-    }
+    // public function getPriceAttribute($value)
+    // {
+    //     return number_format($value, 2, ',', '.');
+    // }
 }

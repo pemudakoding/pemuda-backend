@@ -30,7 +30,7 @@
 										<td>{{ $loop->iteration }}</td>
 										<td>{{ $item->name }}</td>
 										<td>{{ $item->type }}</td>
-										<td>{{ $item->price }}</td>
+										<td>{{ number_format($item->price, 2, ',', '.') }}</td>
 										<td>{{ $item->quantity }}</td>
 										<td>
 											<a href="{{ route('products.gallery',$item->id) }}" class="btn btn-info btn-sm">
