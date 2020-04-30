@@ -12,6 +12,15 @@ use Illuminate\Support\Str;
 class HeroAppController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -142,7 +151,7 @@ class HeroAppController extends Controller
     {
         $app = HeroApp::findOrFail($id);
 
-        if($app->delete()){
+        if ($app->delete()) {
             $logoPath = Str::replaceFirst(asset('storage') . "/", '', $app->background);
             Storage::disk('public')->delete($logoPath);
 
@@ -153,7 +162,7 @@ class HeroAppController extends Controller
                     'message' => "Berhasil menghapus Landing Page <b>$app->title</b>"
                 ]
             );
-        }else{
+        } else {
             return redirect()->route('hero-apps.index')->with(
                 'alert',
                 [

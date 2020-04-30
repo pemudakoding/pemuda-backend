@@ -28,23 +28,21 @@ Route::resource('products', 'ProductController');
 /*
     Product Galleries Route
 */
-Route::resource('product-galleries', 'ProductGalleryController');
-
+Route::resource('product-galleries', 'ProductGalleryController')
 /*
     Transaction Route
 */
 Route::get('transactions/{id}/set-status', 'TransactionController@setStatus')
     ->name('transactions.status');
-Route::resource('transactions', 'TransactionController');
-
+Route::resource('transactions', 'TransactionController')
 
 /*
     Web Route
 */
 
-route::resource('app', 'AppController');
+route::resource('app', 'AppController')->middleware('can:S_Administrator');
 
 /*
     Hero App Route
 */
-route::resource('hero-apps', 'HeroAppController');
+route::resource('hero-apps', 'HeroAppController')->middleware('can:S_Administrator');

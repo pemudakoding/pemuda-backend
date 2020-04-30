@@ -21,6 +21,7 @@
                 <li class="">
                     <a href="{{ route('transactions.index') }}"><i class="menu-icon fa fa-tag"></i>Transaksi</a>
                 </li>
+                @can('S_Administrator')
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Pengaturan Aplikasi</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -32,6 +33,7 @@
                         </li>
                     </ul>
                 </li>
+                @endcan
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
