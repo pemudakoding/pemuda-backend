@@ -31,6 +31,9 @@
                         <li class="">
                             <a href="{{ route('hero-apps.index') }}"> <i class=" fa fa-desktop"></i>Landing Page</a>
                         </li>
+                        <li class="">
+                            <a href="{{ route('users.index') }}"> <i class=" fa fa-users"></i>User</a>
+                        </li>
                     </ul>
                 </li>
                 @endcan

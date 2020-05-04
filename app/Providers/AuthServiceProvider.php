@@ -29,7 +29,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('S_Administrator', function ($user) {
             $user = User::with('level')->find($user->id);
 
-            return $user->level->level == 'Super Administrator';
+            if ($user->level) {
+                return $user->level->level == 'Super Administrator';
+            } else {
+                return false;
+            }
         });
     }
 }

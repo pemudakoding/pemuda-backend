@@ -12,15 +12,19 @@
 
             <div class="user-area dropdown float-right">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="user-avatar rounded-circle" src="{{ asset('images/admin.jpg') }}" alt="User Avatar">
+                    <img class="user-avatar rounded-circle" src="{{ asset('storage/'.Auth::user()->photo) }}" alt="User Avatar">
                 </a>
 
                 <div class="user-menu dropdown-menu">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
                     </form>
+                    <a href="{{ route('users.edit', Auth::id()) }}" class="nav-link">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Account
+                    </a>
                     <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
-                        <i class="fa fa-power -off"></i>
+                        <i class="fa fa-power-off"></i>
                         Logout
                     </a>
                 </div>
